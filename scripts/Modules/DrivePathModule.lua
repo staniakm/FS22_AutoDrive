@@ -247,10 +247,13 @@ function ADDrivePathModule:followWaypoints(dt)
         end
 
         self.distanceToTarget = self:getDistanceToLastWaypoint(40)
+        local approachSpeed = AutoDrive.getSetting("destinationApproachSpeed", self.vehicle)
+        local isInRangeToLoadUnloadTarget = AutoDrive.isInRangeToLoadUnloadTarget(self.vehicle) and self.distanceToTarget <= AutoDrive.getMaxTriggerDistance(self.vehicle)
+        local skipCloseToTargetSpeedClamp = isInRangeToLoadUnloadTarget and approachSpeed == 0
         if self.distanceToTarget < self.distanceToLookAhead then
             local currentTask = self.vehicle.ad.taskModule:getActiveTask()
             local isCatchingCombine = currentTask.taskType ~= nil and self.vehicle.ad.taskModule:getActiveTask().taskType == "CatchCombinePipeTask"
-            if not isCatchingCombine then
+            if not isCatchingCombine and not skipCloseToTargetSpeedClamp then
                 local min_speed = math.min(8, 2 + self.distanceToTarget)
                 local max_speed = math.max(8, 2 + self.distanceToTarget)
                 self.speedLimit = MathUtil.clamp(self.speedLimit, min_speed, max_speed)
@@ -274,9 +277,10 @@ function ADDrivePathModule:followWaypoints(dt)
                 self.speedLimit = math.min(12, self.speedLimit)
                 maxSpeedDiff = 3
             else
-                local isInRangeToLoadUnloadTarget = AutoDrive.isInRangeToLoadUnloadTarget(self.vehicle) and self.distanceToTarget <= AutoDrive.getMaxTriggerDistance(self.vehicle)
                 if isInRangeToLoadUnloadTarget == true then
-                    self.speedLimit = math.min(5, self.speedLimit)
+                    if approachSpeed > 0 then
+                        self.speedLimit = math.min(approachSpeed, self.speedLimit)
+                    end
                 end
             end
         end

@@ -169,6 +169,8 @@
 		<text name="gui_ad_rotateTargets_tooltip"				text="4 Tryby: Bez zmiany celów / tylko cele odbioru / tylko cele dostarczania / Cele odbioru i dostarczania w folderze są kolejno przełączane (nie w folderze domyślnym) (działa tylko przy wykorzystywaniu folderów)" />
 		<text name="gui_ad_maxTriggerDistance"					text="Maksymalna odległość do triggerów" />
 		<text name="gui_ad_maxTriggerDistance_tooltip"			text="Odległość do celów, przy której są wykrywane i aktywowane triggery." />
+		<text name="gui_ad_destinationApproachSpeed"			text="Prędkość dojazdu do celu" />
+		<text name="gui_ad_destinationApproachSpeed_tooltip"	text="Limit prędkości przy dojeździe do triggera celu załadunku/rozładunku. Ustaw Off, aby wyłączyć dodatkowe ograniczenie." />
 		<text name="gui_ad_useGlobalSetting"					text="Use global setting" />
 		<text name="gui_ad_useBeaconLights"						text="Światła ostrzegawcze" />
 		<text name="gui_ad_useBeaconLights_tooltip"				text="Używaj świateł ostrzegawczych na drodze." />

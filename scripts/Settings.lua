@@ -751,6 +751,17 @@ AutoDrive.settings.maxTriggerDistanceVehicle = {
     isVehicleSpecific = true,
 }
 
+AutoDrive.settings.destinationApproachSpeed = {
+    values = {0, 5, 8, 10, 12, 15, 20},
+    texts = {"gui_ad_off", "5 km/h", "8 km/h", "10 km/h", "12 km/h", "15 km/h", "20 km/h"},
+    default = 2,
+    current = 2,
+    text = "gui_ad_destinationApproachSpeed",
+    tooltip = "gui_ad_destinationApproachSpeed_tooltip",
+    translate = true,
+    isVehicleSpecific = true
+}
+
 
 AutoDrive.settings.useBeaconLights = {
     values = {false, true},
