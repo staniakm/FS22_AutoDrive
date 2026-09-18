@@ -249,7 +249,7 @@ function ADDrivePathModule:followWaypoints(dt)
         self.distanceToTarget = self:getDistanceToLastWaypoint(40)
         local approachSpeed = AutoDrive.getSetting("destinationApproachSpeed", self.vehicle)
         local isInRangeToLoadUnloadTarget = AutoDrive.isInRangeToLoadUnloadTarget(self.vehicle) and self.distanceToTarget <= AutoDrive.getMaxTriggerDistance(self.vehicle)
-        local skipCloseToTargetSpeedClamp = isInRangeToLoadUnloadTarget and approachSpeed == 0
+        local skipCloseToTargetSpeedClamp = isInRangeToLoadUnloadTarget
         if self.distanceToTarget < self.distanceToLookAhead then
             local currentTask = self.vehicle.ad.taskModule:getActiveTask()
             local isCatchingCombine = currentTask.taskType ~= nil and self.vehicle.ad.taskModule:getActiveTask().taskType == "CatchCombinePipeTask"
